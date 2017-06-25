@@ -65,9 +65,10 @@ $.fn.dataTable.moment = function ( format, locale ) {
 			d = $.trim( d );
 		}
 		
-		return !moment(d, format, locale, true).isValid() ?
-			Infinity :
-			parseInt( moment( d, format, locale, true ).format( 'x' ), 10 );
+		var _m = moment(d, format, locale, true);
+            	return _m != null && _m.isValid() 
+			? parseInt(moment(d, format, locale, true).format('x'), 10) 
+			: Infinity;
 	};
 };
 
